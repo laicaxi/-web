@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>卡奴猫娘度测试喵</title>
+    <link rel="stylesheet" href="study.css">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div class="div-self">
+        <h1>尊敬的引航者，请通过以下问卷喵</h1>
+
+        <!-- 第一题 -->
+        <div class="div-question" id="question1">
+            <p class="question">1.你最常用的超弦体是谁喵？</p>
+            <details>
+                <summary>选择超弦体:</summary>
+                <div id="q1-options"></div>
+            </details>
+        </div>
+
+        <!-- 第二题 -->
+        <div class="div-question" id="question2">
+            <p class="question">2.你最喜爱的超弦体是谁喵？</p>
+            <details>
+                <summary>选择超弦体:</summary>
+                <div id="q2-options"></div>
+            </details>
+            <div class="btn-group">
+                <button onclick="submitAll()" class="submit-btn">提交问卷</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const characters = [
+            "米雪儿", "明", "拉薇", "令", "忧雾", "奥黛丽", "汐", "玛德蕾娜",
+            "珐格兰丝", "白墨", "梅瑞狄斯", "伊薇特", "星绘", "艾卡", "信",
+            "香奈美", "千代", "心夏", "玛拉", "蕾欧娜", "芙拉薇娅", "绯鲨", "加拉蒂亚"
+        ];
+
+        window.onload = function () {
+            generateOptions('q1-options', 'character1', 'q1');
+            generateOptions('q2-options', 'character2', 'q2');
+            restoreSelections();
+        };
+
+        function generateOptions(containerId, name, prefix) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = '';
+            characters.forEach(char => {
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = name;
+                radio.value = char;
+                radio.id = `${prefix}-${char}`;
+
+                const label = document.createElement('label');
+                label.htmlFor = `${prefix}-${char}`;
+                label.textContent = char;
+
+                container.appendChild(radio);
+                container.appendChild(label);
+                container.appendChild(document.createElement('br'));
+            });
+        }
+
+        function restoreSelections() {
+            const saved1 = localStorage.getItem('question1');
+            if (saved1) {
+                const radio1 = document.querySelector('#question1 input[value="' + saved1 + '"]');
+                if (radio1) radio1.checked = true;
+            }
+
+            const saved2 = localStorage.getItem('question2');
+            if (saved2) {
+                const radio2 = document.querySelector('#question2 input[value="' + saved2 + '"]');
+                if (radio2) radio2.checked = true;
+            }
+        }
+
+        function submitAll() {
+            // 检查第一题是否选择
+            const selected1 = document.querySelector('#question1 input[type="radio"]:checked');
+            if (!selected1) {
+                alert('请先完成第一题喵~');
+                document.getElementById('question1').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            // 检查第二题是否选择
+            const selected2 = document.querySelector('#question2 input[type="radio"]:checked');
+            if (!selected2) {
+                alert('请先完成第二题喵~');
+                document.getElementById('question2').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            // ===== 新增判断逻辑 =====
+            let result1 = selected1.value;
+            let result2 = selected2.value;
+
+            // 第一题：如果没选白墨，改成指定文字
+            if (selected1.value !== "白墨") {
+                result1 = "为什么不是白墨喵，捅似你喵，捅似你喵！";
+            }
+
+            // 第二题：如果没选白墨，改成指定文字
+            if (selected2.value !== "白墨") {
+                result2 = "为什么不是白墨喵，捅似你喵，捅似你喵！";
+            }
+            // =======================
+
+            // 保存修改后的结果
+            localStorage.setItem('question1', result1);
+            localStorage.setItem('question2', result2);
+
+            // 跳转到结果页
+            window.location.href = 'result.html';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+h1 {
+    margin: 0 auto;
+    padding: 5px;
+    text-align: center;
+    font-size: 45px;
+}
+
+p {
+    color: black;
+    font-size: 20px;
+}
+
+div {
+    background-color: rgba(246, 162, 210, 0.3);
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: auto;
+}
+
+.div-self {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-image: url(picture/hajimi-1.jpg), url(picture/hajimi-2.png);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 5% 50px, 95% 50px;
+    background-size: 550px 500px, 550px 460px;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.special-text {
+    color: red;
+}
+
+.question {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.div-question {
+    margin-bottom: 40px;
+    background-color: transparent;
+    padding: 15px;
+}
+
+details {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+summary {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+input[type="radio"] + label {
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.btn-group {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-btn {
+    background-color: #2196F3;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}

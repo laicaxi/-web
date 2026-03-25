@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>问卷结果喵</title>
+    <link rel="stylesheet" href="study.css">
+    <style>
+        .result-container {
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 50px auto;
+            max-width: 500px;
+        }
+        .result-item {
+            font-size: 20px;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn-back {
+            background-color: #2196F3;
+        }
+        .red-text {
+            color: red;
+            font-weight: bold;
+        }
+        .result-image {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .result-image img {
+            max-width: 200px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="div-self">
+        <div class="result-container">
+            <h1>您的选择喵~</h1>
+            
+            <div class="result-item">
+                <strong>最常用的超弦体：</strong>
+                <span id="result1"></span>
+                <!-- 第一题的图片会动态加在这里 -->
+                <div id="image1" class="result-image"></div>
+            </div>
+            
+            <div class="result-item">
+                <strong>最喜爱的超弦体：</strong>
+                <span id="result2"></span>
+                <!-- 第二题的图片会动态加在这里 -->
+                <div id="image2" class="result-image"></div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="study.html" class="btn btn-back">← 返回修改</a>
+                <a href="study.html" onclick="localStorage.clear()" class="btn">重新填写</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const q1 = localStorage.getItem('question1') || '未选择';
+            const q2 = localStorage.getItem('question2') || '未选择';
+            
+            const span1 = document.getElementById('result1');
+            const span2 = document.getElementById('result2');
+            const image1 = document.getElementById('image1');
+            const image2 = document.getElementById('image2');
+            
+            // 设置第一题文字和颜色
+            span1.textContent = q1;
+            if (q1 === '为什么不是白墨喵，捅似你喵，捅似你喵！') {
+                span1.className = 'red-text';
+                // 第一题没选白墨，加图片
+                image1.innerHTML = '<img src="picture/hajimi-4.png" alt="为什么不是白墨喵，捅似你喵，捅似你喵！">';
+            } else {
+                image1.innerHTML = ''; // 选了白墨就不显示图片
+            }
+            
+            // 设置第二题文字和颜色
+            span2.textContent = q2;
+            if (q2 === '为什么不是白墨喵，捅似你喵，捅似你喵！') {
+                span2.className = 'red-text';
+                // 第二题没选白墨，加图片
+                image2.innerHTML = '<img src="picture/hajimi-4.png" alt="为什么不是白墨喵，捅似你喵，捅似你喵！">';
+            } else {
+                image2.innerHTML = ''; // 选了白墨就不显示图片
+            }
+        };
+    </script>
+</body>
+</html>
